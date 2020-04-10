@@ -1,0 +1,6 @@
+1 Savarina Zahar,faina,ciocolata,capsuna 2.50 
+2 Tiramisu Zahar,cacao,rom,frisca 3.50 
+3 Diplomat Zahar,ciocolata,faina,nuco 4.00 
+4 Cremes Zahar,unt,faina,oua 3.00 
+5 Briosa Zahar,unt,ciocolata,faina,alune 5.50 
+6 Gogoasa Faina,zahar,vanilie 2.20 
