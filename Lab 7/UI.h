@@ -18,5 +18,6 @@ private:
 	void uiPrintAll();
 	void uiDeleteCookie();
 	void printMenu();
+	void uiaverage();
 	Service serv;
 };

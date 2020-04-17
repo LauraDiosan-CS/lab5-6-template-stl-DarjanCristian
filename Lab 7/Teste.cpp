@@ -130,14 +130,30 @@ void Teste::testService()
 	char* name = new char[strlen("Savarina") + 1];
 	strcpy_s(name, strlen("Savarina") + 1, "Savarina");
 
-	char* igredients = new char[strlen("Zahar,faina,ciocolata,capsuna") + 1];
-	strcpy_s(igredients, strlen("Zahar,faina,ciocolata,capsuna") + 1, "Zahar,faina,ciocolata,capsuna");
+	char* igredients = new char[strlen("zahar,faina,ciocolata,capsuna,") + 1];
+	strcpy_s(igredients, strlen("zahar,faina,ciocolata,capsuna,") + 1, "zahar,faina,ciocolata,capsuna,");
 
-	serv.addCookie(1, name, igredients, 2.50);
+	serv.addCookie(1, name, igredients, 2);
+
+	serv.addCookie(2, (char*)"Cremes", (char*)"zahar,sare,faina,ciocolata,", 3);
+
+	map<string, double> igred = serv.avgPriceOfIgredients();
+
+	map<string, double>::iterator it = igred.begin();
+	it++;
+	
+	assert((string)"capsuna" == it->first );
+	assert(abs(it->second - 2.000) < 0.01);
+
+	it++;
+
+	assert((string)"ciocolata" == it->first);
+	assert(abs(it->second - 2.500) < 0.01);
 
 	delete[] name;
 	delete[] igredients;
 
 	serv.delteCookie(1);
+
 
 }

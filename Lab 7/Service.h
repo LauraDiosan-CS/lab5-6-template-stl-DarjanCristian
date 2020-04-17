@@ -2,6 +2,7 @@
 #include "Repo.h"
 #include "RepoSTL.h"
 #include "Cookie.h"
+#include <map>
 
 
 class Service
@@ -15,6 +16,8 @@ public:
 	void updateCookie(int identity, char* name, char* igredients, double price);
 	vector<Cookie> getAll();
 	void delteCookie(int identity);
+	
+	map<string, double> avgPriceOfIgredients();
 private:
 	Repo<Cookie>* repo;
 };

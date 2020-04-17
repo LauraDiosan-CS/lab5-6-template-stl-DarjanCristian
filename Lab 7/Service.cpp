@@ -70,3 +70,69 @@ void Service::delteCookie(int identity)
 		}
 	}
 }
+
+/*
+Calculates the avrage price of cookies that have that same igredient
+in: where the price result will be returned
+out: the igredient that is specific to the price (every igredient pozision is specifique to position of prices)
+*/
+map<string, double> Service::avgPriceOfIgredients()
+{
+	map<string, double> results;
+	vector<Cookie> cookies = this->repo->getAll();
+
+	if (cookies.size() > 0)
+	{
+		map<string, int> igredients;
+
+		string igredient;
+		string sep = ",";
+		string cookieIgredients;
+		size_t pos;
+
+		for (unsigned int i = 0; i < cookies.size(); i++)
+		{
+			cookieIgredients.assign(cookies[i].getIgredients(), strlen(cookies[i].getIgredients()) + 1);
+
+			pos = cookieIgredients.find(sep);
+			igredient = cookieIgredients.substr(0, pos);
+			cookieIgredients.erase(0, pos + sep.length());
+			
+			while (igredient.size() > 0)
+			{
+				if (igredients.find(igredient) == igredients.end())
+				{
+					igredients.emplace((igredient), 1);
+					results.emplace(igredient, cookies[i].getPrice());
+				}
+				else
+				{
+					igredients[igredient]++;
+					results[igredient] += cookies[i].getPrice();
+				}
+
+				pos = cookieIgredients.find(sep);
+				igredient = cookieIgredients.substr(0, pos);
+
+				if (cookieIgredients.size() == igredient.size())
+				{
+					cookieIgredients.erase();
+				}
+				else
+				{
+					cookieIgredients.erase(0, pos + sep.length());
+				}
+			}
+		}
+
+		map<string, double>::iterator it = results.begin();
+
+		while (it != results.end())
+		{
+			it->second /= igredients[it->first];
+			it++;
+		}
+	}
+
+	return results;
+}

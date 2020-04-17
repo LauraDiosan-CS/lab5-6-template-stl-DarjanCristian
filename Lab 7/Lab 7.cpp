@@ -11,7 +11,7 @@ int main()
 	
 	Repo<Cookie> *repo;
 
-	repo = new Repo<Cookie>;
+	repo = new RepoSTL<Cookie>("outFile.txt");
 
 	Service serv(repo);
 

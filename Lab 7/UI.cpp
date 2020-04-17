@@ -38,6 +38,10 @@ void UserInterfece::runUI()
 		{
 			this->uiDeleteCookie();
 		}
+		if (option == '5')
+		{
+			this->uiaverage();
+		}
 		if (option == 'x')
 		{
 			shouldRun = false;
@@ -113,5 +117,27 @@ void UserInterfece::printMenu()
 	cout << "2 - Add Cookie\n";
 	cout << "3 - Update Cookie\n";
 	cout << "4 - Delete Cookie\n";
+	cout << "5 - Average Igredient Cost\n";
 	cout << "x - EXIT\n\n";
+}
+
+void UserInterfece::uiaverage()
+{
+	map<string, double> cookies;
+
+	cookies = this->serv.avgPriceOfIgredients();
+
+	map<string, double>::iterator it = cookies.begin();
+
+	it++;
+
+	while (it != cookies.end())
+	{
+		cout << it->first << ": " << it->second << endl;
+		it++;
+	}
+
+	cookies.clear();
+
+	cout << endl;
 }
